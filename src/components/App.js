@@ -1,42 +1,29 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react";
 import BlogContainer from "./BlogContainer";
 import Search from "./Search";
-import NewBlogForm from "./NewBlogForm"
-import BlogPosts from "./BlogPosts"
+import NewBlogForm from "./NewBlogForm";
+import Header from "./Header";
 
 function App() {
-  useEffect(()=>{
+  const [blogsData, setBlogData] = useState([]);
+
+  useEffect(() => {
     fetch("http://localhost:4002/articles")
-    .then(resp => resp.json())
-    .then(atriclesArr => {
-      const articleCards = atriclesArr.map((article)=>{
-        console.log(article)
-        return(
-          <BlogContainer article = {article}/>
-          
-          
-        )
-      })
+      .then((resp) => resp.json())
+      .then((blogsArr) => setBlogData(blogsArr));
+  }, []);
 
-    })
-
-  },[])
- 
   return (
     <>
-      <Search/>
-      <BlogContainer/>
-      <NewBlogForm/>
-
-    <div className="App">
-      <header className="App-header">
-       
-        
-      </header>
-    </div>
-  </>
+      <Header />
+      <Search />
+      <BlogContainer blogsData={blogsData} />
+      <NewBlogForm />
+      <div className="App">
+        <header className="App-header"></header>
+      </div>
+    </>
   );
-
 }
 
 export default App;

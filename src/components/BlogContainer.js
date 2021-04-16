@@ -1,15 +1,12 @@
-import React from "react"
-import BlogPosts from "./BlogPosts"
+import React from "react";
+import BlogPosts from "./BlogPosts";
 
+function BlogContainer({ blogsData }) {
+  const blogPosts = blogsData.map((blog) => {
+    return <BlogPosts key={blog.id} blog={blog} />;
+  });
 
-
-function BlogContainer({article}){
-    console.log({article})
-
-    return(
-        <BlogPosts/>
-       
-    )
+  return <div id="blog-collection">{blogPosts}</div>;
 }
 
-export default BlogContainer
+export default BlogContainer;

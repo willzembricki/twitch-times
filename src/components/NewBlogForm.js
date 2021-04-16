@@ -1,10 +1,14 @@
-import React from "react"
+import React from "react";
 
-function NewBlogForm(){
-    return( 
-        <h1>New Blog Form</h1>
-
-    )
-
+function NewBlogForm() {
+  return (
+    <div>
+      <h1>New Blog Form</h1>
+      <form>
+        <textarea></textarea>
+      </form>
+      <button>Submit Comment</button>
+    </div>
+  );
 }
-export default NewBlogForm
+export default NewBlogForm;

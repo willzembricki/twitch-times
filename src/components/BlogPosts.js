@@ -1,19 +1,17 @@
-import React from "react"
+import React from "react";
 
-function BlogPosts(props){
-    console.log(props)
-    return(
-        <div> 
-
-        <h1>{props.blogName}</h1>
-        {/* <iframe src = {props.videoUrl} ></iframe> */}
-        <p>{props.blogContent}</p>
-        <span>
-            <button>{props.blogUpVote} Upvotes</button>
-            <button>{props.blogDownVote} Downvotes</button>
-        </span>
-        </div>
-    )
-
+function BlogPosts({ blog }) {
+  const { blogName, videoUrl, blogContent, blogUpVote, blogDownVote } = blog;
+  return (
+    <div>
+      <h1>{blogName}</h1>
+      <iframe src={videoUrl}></iframe>
+      <p>{blogContent}</p>
+      <span>
+        <button>{blogUpVote} Upvotes</button>
+        <button>{blogDownVote} Downvotes</button>
+      </span>
+    </div>
+  );
 }
-export default BlogPosts
+export default BlogPosts;
