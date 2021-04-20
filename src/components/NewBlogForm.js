@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import BlogPosts from "./BlogPosts.js";
 function NewBlogForm({ onAddBlog }) {
   const [authorInput, setAuthorInput] = useState("");
   const [blogTitle, setBlogTitle] = useState("");
@@ -15,7 +14,7 @@ function NewBlogForm({ onAddBlog }) {
       blogUpVote: 0,
       blogDownVote: 0,
     };
-    fetch(`http://localhost:4002/articles`, {
+    fetch(`http://localhost:4002/articles?_embed=articleComments`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

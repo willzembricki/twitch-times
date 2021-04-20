@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
+import BlogPostComments from "./BlogPostComments";
 
-function BlogPosts({ blog }) {
+function BlogPosts({ blog, onNewComment }) {
   const {
     author,
     blogName,
@@ -41,6 +42,16 @@ function BlogPosts({ blog }) {
       .then((data) => setCurrentDownvote(data.blogDownVote));
   }
 
+  const blogCommentsArr = blog.articleComments.map((comments) => {
+    return (
+      <BlogPostComments
+        key={comments.id}
+        comments={comments}
+        onNewComment={onNewComment}
+      />
+    );
+  });
+
   return (
     <div className="blogPosts">
       <h2>{blogName}</h2>
@@ -52,7 +63,7 @@ function BlogPosts({ blog }) {
         <button onClick={downvoteIncrease}>{currentDownvote} Downvotes</button>
       </span>
       <br />
-      <textarea palceholder="Comment Here"></textarea>
+      {blogCommentsArr}
     </div>
   );
 }
