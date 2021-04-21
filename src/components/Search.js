@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 
-function Search() {
-  const [searchTerm, setSearchTerm] = useState("");
+function Search({ searchTerm, onUpdateSearch }) {
   return (
     <form>
       <h1>Search</h1>
       <input
         type="text"
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
+        onChange={(e) => onUpdateSearch(e.target.value)}
       ></input>
       <button type="submit">Search</button>
     </form>

@@ -37,12 +37,13 @@ function BlogPostComments({ comments, onNewComment }) {
       .then((data) => setCurrentDownvote(data.commentDownvotes));
   }
   // building the name and comment with buttons for voting
+
   return (
     <div>
       <h2>{name}</h2>
       <p>{childComment}</p>
-      <button onClick={upvoteIncrease}> {currentUpvote} </button>
-      <button onClick={downvoteIncrease}>{currentDownvote} Downvotes</button>
+      <button onClick={upvoteIncrease}> {currentUpvote} 👍</button>
+      <button onClick={downvoteIncrease}>{currentDownvote} 👎</button>
       <br />
     </div>
   );

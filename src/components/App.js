@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import BlogContainer from "./BlogContainer";
 import Search from "./Search";
 import NewBlogForm from "./NewBlogForm";
-import Header from "./Header";
+//import Header from "./Header";
 
 function App() {
   // Setting State of embedded JSON array
   const [blogsData, setBlogData] = useState([]);
+  const [showHideForm, setShowHideForm] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
   console.log(blogsData);
   useEffect(() => {
     fetch("http://localhost:4002/articles?_embed=articleComments")
@@ -33,19 +36,35 @@ function App() {
     setBlogData(updatedBlog);
   }
 
+  //help function for showing/hiding new blog form
+  function handleShowHideForm() {
+    setShowHideForm(!showHideForm);
+  }
+
+  function handleUpdateSearch(newSearch) {
+    setSearchTerm(newSearch);
+  }
+
   // App is the parent component. these are the three siblings. Search is not used yet but will end up here
   return (
-    <>
-      <Header />
+    <div className="App">
+      {/* <div className="App-header">
+        <Header />
+      </div> */}
 
-      <BlogContainer blogsData={blogsData} onNewComment={handleNewComment} />
-
-      <NewBlogForm onAddBlog={handleAddBlog} />
-
-      <div className="App">
-        <header className="App-header"></header>
+      <div className="sidebar">
+        <button onClick={handleShowHideForm}>
+          {showHideForm ? "Hide" : "Show"} Form
+        </button>
+        {showHideForm ? <NewBlogForm onAddBlog={handleAddBlog} /> : null}
+        <Search searchTerm={searchTerm} onUpdateSearch={handleUpdateSearch} />
       </div>
-    </>
+      <BlogContainer
+        blogsData={blogsData}
+        onNewComment={handleNewComment}
+        searchTerm={searchTerm}
+      />
+    </div>
   );
 }
 

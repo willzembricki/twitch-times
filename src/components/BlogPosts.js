@@ -93,6 +93,11 @@ function BlogPosts({ blog, onNewComment }) {
   // You have the blogs and their titles/ vote button with the event listener
   // form for the new comment
   // toggle for showing or hiding comments
+  //helper function for hide/show
+  function handleHideShow() {
+    setShowComments(!showComments);
+  }
+
   return (
     <div className="blogPosts">
       <h2>{blogName}</h2>
@@ -100,8 +105,8 @@ function BlogPosts({ blog, onNewComment }) {
       <ReactPlayer url={videoURL} />
       <p>{blogContent}</p>
       <span>
-        <button onClick={upvoteIncrease}>{currentUpvote} Upvotes</button>
-        <button onClick={downvoteIncrease}>{currentDownvote} Downvotes</button>
+        <button onClick={upvoteIncrease}>{currentUpvote} 👍</button>
+        <button onClick={downvoteIncrease}>{currentDownvote} 👎</button>
       </span>
       <br />
       <form onSubmit={handleSubmit}>
@@ -121,17 +126,11 @@ function BlogPosts({ blog, onNewComment }) {
         <br />
         <button>submit</button>
         <br />
-        {showComments ? (
-          <button onClick={() => setShowComments(!showComments)}>
-            Hide Comments
-          </button>
-        ) : (
-          <button onClick={() => setShowComments(!showComments)}>
-            Show Comments
-          </button>
-        )}
       </form>
-      {showComments ? <p>{blogCommentsArr}</p> : null}
+      <button onClick={handleHideShow}>
+        {showComments ? "Hide" : "Show"} Comments
+      </button>
+      {showComments ? <div>{blogCommentsArr}</div> : null}
     </div>
   );
 }

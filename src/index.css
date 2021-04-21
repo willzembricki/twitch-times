@@ -7,6 +7,22 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.App {
+  display: flex;
+  flex-direction: row;
+}
+
+.App-header {
+  padding: 60px;
+  text-align: center;
+  background: purple;
+  color: white;
+  font-size: 30px;
+  font-weight: 900;
+  padding: 0.5rem 0;
+  position: fixed;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -14,4 +30,26 @@ code {
 
 div.blogPosts {
   border: 2px, black;
+}
+
+.sidebar {
+  min-height: 100vh;
+  min-width: 12em;
+  width: 28%;
+  border-right: solid black 1px;
+  background: gray;
+  padding: 5em;
+}
+.sidebar > button {
+  width: 100%;
+}
+
+#blog-collection {
+  max-width: 30em;
+  margin: auto;
+}
+#blog-collection > div {
+  border-bottom: solid 1px grey;
+  padding-bottom: 1em;
+  min-width: 5em;
 }
