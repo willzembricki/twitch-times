@@ -100,9 +100,9 @@ function BlogPosts({ blog, onNewComment }) {
 
   return (
     <div className="blogPosts">
-      <h2>{blogName}</h2>
-      <h3>Written By: {author}</h3>
-      <ReactPlayer url={videoURL} />
+      <h3 className="blogTitles">{blogName}</h3>
+      <h4>Written By: {author}</h4>
+      <ReactPlayer className="react-player" url={videoURL} />
       <p>{blogContent}</p>
       <span>
         <button onClick={upvoteIncrease}>{currentUpvote} 👍</button>
@@ -124,7 +124,7 @@ function BlogPosts({ blog, onNewComment }) {
           onChange={(e) => setCommentInput(e.target.value)}
         />{" "}
         <br />
-        <button>submit</button>
+        <button>Submit</button>
         <br />
       </form>
       <button onClick={handleHideShow}>

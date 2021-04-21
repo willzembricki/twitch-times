@@ -8,19 +8,7 @@ body {
 }
 
 .App {
-  display: flex;
-  flex-direction: row;
-}
-
-.App-header {
-  padding: 60px;
-  text-align: center;
-  background: purple;
-  color: white;
-  font-size: 30px;
-  font-weight: 900;
-  padding: 0.5rem 0;
-  position: fixed;
+  display: auto;
 }
 
 code {
@@ -29,20 +17,49 @@ code {
 }
 
 div.blogPosts {
-  border: 2px, black;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  display: list-item;
+  width: fit-content;
+  margin-top: 10px;
+  list-style-type: none;
+  marker: none;
+  background-color: whitesmoke;
+  padding-left: auto;
+  padding-bottom: 10px;
 }
 
-.sidebar {
-  min-height: 100vh;
-  min-width: 12em;
-  width: 28%;
-  border-right: solid black 1px;
-  background: gray;
-  padding: 5em;
+/* On mouse-over, add a deeper shadow */
+.blogPosts:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
-.sidebar > button {
+
+/* Add some padding inside the card container */
+.container {
+  padding: 10px 26px;
+}
+.react-player {
+  height: 100%;
   width: 100%;
+  min-height: 225px;
 }
+
+#sidebar {
+  height: 100%;
+  width: auto;
+  position: absolute;
+  left: 0;
+  top: 107px;
+  padding-top: 150px;
+  background-color: lightslategray;
+}
+
+/* #sidebar div {
+  padding: 8px;
+  font-size: 24px;
+  display: block;
+} */
 
 #blog-collection {
   max-width: 30em;
@@ -52,4 +69,38 @@ div.blogPosts {
   border-bottom: solid 1px grey;
   padding-bottom: 1em;
   min-width: 5em;
+  background-color: white;
+}
+#App-header {
+  text-align: center;
+  background: purple;
+  color: white;
+  display: block;
+  padding: 20px;
+}
+#twitch-times {
+  font-size: 35pt;
+  font-family: Helvetica;
+  padding: 0;
+}
+#blog-container {
+  background-color: rgb(203, 211, 222);
+}
+form#search-form {
+  width: auto;
+}
+
+button {
+  border-radius: 20%;
+  transition-duration: 0.4s;
+  background-color: rgb(176, 23, 176); /* Green */
+  color: white;
+  text-align: center;
+  font-size: 16px;
+}
+h3.blogTitles {
+  text-align: center;
+  font-style: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 24pt;
 }

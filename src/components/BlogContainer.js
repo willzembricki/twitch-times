@@ -5,7 +5,7 @@ import BlogPosts from "./BlogPosts";
 // carries onNewComment down to BogPostComments
 function BlogContainer({ blogsData, onNewComment, searchTerm }) {
   const filteredBlogs = blogsData.filter((blog) => {
-    // check the name of the plant, return true if it matches the search term
+    // check the name of the blogs versus the search term
     return blog.blogName.toLowerCase().includes(searchTerm.toLowerCase());
   });
 

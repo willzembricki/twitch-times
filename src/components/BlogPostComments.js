@@ -40,7 +40,7 @@ function BlogPostComments({ comments, onNewComment }) {
 
   return (
     <div>
-      <h2>{name}</h2>
+      <h4>{name}</h4>
       <p>{childComment}</p>
       <button onClick={upvoteIncrease}> {currentUpvote} 👍</button>
       <button onClick={downvoteIncrease}>{currentDownvote} 👎</button>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import BlogContainer from "./BlogContainer";
 import Search from "./Search";
 import NewBlogForm from "./NewBlogForm";
-//import Header from "./Header";
+import Header from "./Header";
 
 function App() {
   // Setting State of embedded JSON array
@@ -48,22 +48,25 @@ function App() {
   // App is the parent component. these are the three siblings. Search is not used yet but will end up here
   return (
     <div className="App">
-      {/* <div className="App-header">
+      <div id="App-header">
         <Header />
-      </div> */}
+      </div>
 
-      <div className="sidebar">
+      <div id="sidebar">
         <button onClick={handleShowHideForm}>
           {showHideForm ? "Hide" : "Show"} Form
         </button>
         {showHideForm ? <NewBlogForm onAddBlog={handleAddBlog} /> : null}
         <Search searchTerm={searchTerm} onUpdateSearch={handleUpdateSearch} />
       </div>
-      <BlogContainer
-        blogsData={blogsData}
-        onNewComment={handleNewComment}
-        searchTerm={searchTerm}
-      />
+
+      <div id="blog-container">
+        <BlogContainer
+          blogsData={blogsData}
+          onNewComment={handleNewComment}
+          searchTerm={searchTerm}
+        />
+      </div>
     </div>
   );
 }
