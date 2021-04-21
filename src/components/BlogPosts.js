@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import ReactPlayer from "react-player";
 import BlogPostComments from "./BlogPostComments";
-
+// passes down the state function being called by map
+// carries onNewComment down to BogPostComments
 function BlogPosts({ blog, onNewComment }) {
+  //  Deconstructing the blogObj from Map
   const {
     author,
     blogName,
@@ -10,10 +12,19 @@ function BlogPosts({ blog, onNewComment }) {
     blogContent,
     blogUpVote,
     blogDownVote,
+    articleComments,
+    id,
   } = blog;
+
+  // setting state for Blog up/down vote Also the comment form states
+  // toggle to show comments
   const [currentUpvote, setCurrentUpvote] = useState(blogUpVote);
   const [currentDownvote, setCurrentDownvote] = useState(blogDownVote);
+  const [nameInput, setNameInput] = useState("");
+  const [commentInput, setCommentInput] = useState("");
+  const [showComments, setShowComments] = useState(false);
 
+  //  fetch PATCH for when someone upvotes a blog
   function upvoteIncrease() {
     fetch(`http://localhost:4002/articles/${blog.id}`, {
       method: "PATCH",
@@ -27,7 +38,7 @@ function BlogPosts({ blog, onNewComment }) {
       .then((res) => res.json())
       .then((data) => setCurrentUpvote(data.blogUpVote));
   }
-
+  // Same function as above just updating DownVote
   function downvoteIncrease() {
     fetch(`http://localhost:4002/articles/${blog.id}`, {
       method: "PATCH",
@@ -42,7 +53,10 @@ function BlogPosts({ blog, onNewComment }) {
       .then((data) => setCurrentDownvote(data.blogDownVote));
   }
 
-  const blogCommentsArr = blog.articleComments.map((comments) => {
+  // passes down the comments array of nested main obj
+  // maps through and builds the comments in BLogPostComments
+  // Passes down on new Comment
+  const blogCommentsArr = articleComments.map((comments) => {
     return (
       <BlogPostComments
         key={comments.id}
@@ -52,6 +66,33 @@ function BlogPosts({ blog, onNewComment }) {
     );
   });
 
+  // Handles the submission of a new comment on one of the blogs
+  // resets the input states
+  function handleSubmit(e) {
+    e.preventDefault();
+    const formData = {
+      articleId: id,
+      name: nameInput,
+      childComment: commentInput,
+      commentDownvotes: 0,
+      commentUpvotes: 0,
+    };
+    fetch(`http://localhost:4002/articleComments`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((r) => r.json())
+      .then((newComment) => onNewComment(newComment));
+    setNameInput("");
+    setCommentInput("");
+  }
+  // This builds the indiviudal blogPost to be future cards
+  // You have the blogs and their titles/ vote button with the event listener
+  // form for the new comment
+  // toggle for showing or hiding comments
   return (
     <div className="blogPosts">
       <h2>{blogName}</h2>
@@ -63,7 +104,34 @@ function BlogPosts({ blog, onNewComment }) {
         <button onClick={downvoteIncrease}>{currentDownvote} Downvotes</button>
       </span>
       <br />
-      {blogCommentsArr}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Name"
+          value={nameInput}
+          onChange={(e) => setNameInput(e.target.value)}
+        />{" "}
+        <br />
+        <textarea
+          type="text"
+          placeholder="Comment"
+          value={commentInput}
+          onChange={(e) => setCommentInput(e.target.value)}
+        />{" "}
+        <br />
+        <button>submit</button>
+        <br />
+        {showComments ? (
+          <button onClick={() => setShowComments(!showComments)}>
+            Hide Comments
+          </button>
+        ) : (
+          <button onClick={() => setShowComments(!showComments)}>
+            Show Comments
+          </button>
+        )}
+      </form>
+      {showComments ? <p>{blogCommentsArr}</p> : null}
     </div>
   );
 }

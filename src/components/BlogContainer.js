@@ -1,17 +1,12 @@
 import React from "react";
 import BlogPosts from "./BlogPosts";
-
-function BlogContainer({ blogsData }) {
+// this is where all the blogs and their respective comments are stored.
+// this function maps through the state array from APP
+// carries onNewComment down to BogPostComments
+function BlogContainer({ blogsData, onNewComment }) {
   const blogPosts = blogsData.map((blog) => {
-    return (
-      <BlogPosts key={blog.id} blog={blog} onNewComment={handleNewComment} />
-    );
+    return <BlogPosts key={blog.id} blog={blog} onNewComment={onNewComment} />;
   });
-
-  function handleNewComment(newComment) {
-    const updatedComments = [...blogsData, newComment];
-    setBlogData(updatedComments);
-  }
 
   return <div id="blog-collection">{blogPosts}</div>;
 }
