@@ -53,11 +53,12 @@ function App() {
       </div>
 
       <div id="sidebar">
+        <Search searchTerm={searchTerm} onUpdateSearch={handleUpdateSearch} />
+        <br />
         <button onClick={handleShowHideForm}>
           {showHideForm ? "Hide" : "Show"} Form
         </button>
         {showHideForm ? <NewBlogForm onAddBlog={handleAddBlog} /> : null}
-        <Search searchTerm={searchTerm} onUpdateSearch={handleUpdateSearch} />
       </div>
 
       <div id="blog-container">

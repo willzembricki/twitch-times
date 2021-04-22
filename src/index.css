@@ -22,12 +22,12 @@ div.blogPosts {
   transition: 0.3s;
   display: list-item;
   width: fit-content;
-  margin-top: 10px;
+  margin-top: -10px;
   list-style-type: none;
   marker: none;
   background-color: whitesmoke;
   padding-left: auto;
-  padding-bottom: 10px;
+  margin-bottom: 30px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -50,7 +50,7 @@ div.blogPosts {
   width: auto;
   position: absolute;
   left: 0;
-  top: 107px;
+  top: 290px;
   padding-top: 150px;
   background-color: lightslategray;
 }
@@ -67,16 +67,18 @@ div.blogPosts {
 }
 #blog-collection > div {
   border-bottom: solid 1px grey;
-  padding-bottom: 1em;
+  padding-bottom: 3em;
   min-width: 5em;
   background-color: white;
+  padding-top: 10px;
 }
 #App-header {
-  text-align: center;
+  text-align: left;
   background: purple;
   color: white;
   display: block;
-  padding: 20px;
+  padding: auto;
+  height: 300px;
 }
 #twitch-times {
   font-size: 35pt;
@@ -103,4 +105,5 @@ h3.blogTitles {
   font-style: bold;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 24pt;
+  margin: 0;
 }
