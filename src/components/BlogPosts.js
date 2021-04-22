@@ -56,15 +56,11 @@ function BlogPosts({ blog, onNewComment }) {
   // passes down the comments array of nested main obj
   // maps through and builds the comments in BLogPostComments
   // Passes down on new Comment
-  const blogCommentsArr = articleComments.map((comments) => {
-    return (
-      <BlogPostComments
-        key={comments.id}
-        comments={comments}
-        onNewComment={onNewComment}
-      />
-    );
-  });
+  let renderComments =
+    articleComments &&
+    articleComments.map((comments) => {
+      return <BlogPostComments key={comments.id} comments={comments} />;
+    });
 
   // Handles the submission of a new comment on one of the blogs
   // resets the input states
@@ -130,7 +126,7 @@ function BlogPosts({ blog, onNewComment }) {
       <button onClick={handleHideShow}>
         {showComments ? "Hide" : "Show"} Comments
       </button>
-      {showComments ? <div>{blogCommentsArr}</div> : null}
+      {showComments ? <div>{renderComments}</div> : null}
     </div>
   );
 }

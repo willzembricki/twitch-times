@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // finally onNewComment finds its home
 // The comments array BlogPosts line 59
 
-function BlogPostComments({ comments, onNewComment }) {
+function BlogPostComments({ comments }) {
   // destructing the comments prop
   const { id, childComment, commentUpvotes, commentDownvotes, name } = comments;
   // setting the states for the comments voting feature
