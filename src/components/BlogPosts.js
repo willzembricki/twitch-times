@@ -111,6 +111,7 @@ function BlogPosts({ blog, onNewComment }) {
           placeholder="Name"
           value={nameInput}
           onChange={(e) => setNameInput(e.target.value)}
+          required
         />{" "}
         <br />
         <textarea
@@ -118,6 +119,7 @@ function BlogPosts({ blog, onNewComment }) {
           placeholder="Comment"
           value={commentInput}
           onChange={(e) => setCommentInput(e.target.value)}
+          required
         />{" "}
         <br />
         <button>Submit</button>

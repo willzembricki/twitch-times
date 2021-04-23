@@ -45,12 +45,14 @@ function NewBlogForm({ onAddBlog }) {
           value={authorInput}
           type="text"
           placeholder="Author"
+          required
         ></input>
         <input
           onChange={(e) => setBlogTitle(e.target.value)}
           value={blogTitle}
           type="text"
           placeholder="Blog Title"
+          required
         ></input>
         <br />
         <input
@@ -58,6 +60,7 @@ function NewBlogForm({ onAddBlog }) {
           value={inputUrl}
           type="URL"
           placeholder="Video URL"
+          required
         ></input>
         <br />
         <textarea
@@ -66,6 +69,7 @@ function NewBlogForm({ onAddBlog }) {
           rows="5"
           cols="40"
           placeholder="Blog away..."
+          required
         ></textarea>{" "}
         <br />
         <button type="submit">Submit Blog</button>
